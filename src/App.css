@@ -30,3 +30,26 @@
 .App-link {
   color: #61dafb;
 }
+
+.player-box {
+  border: black solid 1px;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 30px;
+}
+
+.track-title {
+  text-transform: capitalize;
+  text-align: left;
+  color: darkslategray;
+  margin-top: 0;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: darkslategray;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #3e7e5f;
+  border-radius: 50%;
+}

@@ -1,19 +1,28 @@
 import logo from './baby-face-icon.svg';
 import './App.css';
 
+const tracks = [
+  "Sleep-little-one",
+  "Baby-Sleep-Songs",
+  "Collection-for-Nursery",
+  "rain",
+  "utero"
+]
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="wobble" alt="logo" />
-
-          <Player track="Sleep-little-one" />
-          <Player track="Baby-Sleep-Songs" />
-          <Player track="Collection-for-Nursery" />
-          <Player track="rain" />
-          <Player track="utero" />
-
       </header>
+      <section>
+          {tracks.map((track, i) => {
+            return <Player key={i} track={track} />
+          })}
+      </section>
+      <footer>
+          <p>VSK Lullaby for babies. No ads, low light, no throuble. 2022</p>
+      </footer>
     </div>
   );
 }

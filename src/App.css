@@ -7,7 +7,7 @@
 }
 
 .wobble {
-  height: 30vmin;
+  height: 10vmin;
   margin: 20px 0 10px 0;
   animation: wobble 2s ease infinite;
 }
@@ -27,6 +27,8 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  position: sticky;
+  top: 5px;
 }
 
 .App-link {

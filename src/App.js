@@ -21,7 +21,7 @@ function App() {
           })}
       </section>
       <footer>
-          <p>VSK Lullaby for babies. No ads, low light, no throuble. 2022</p>
+          <p>VSK Lullaby for babies. No ads, no login, low light, no throuble. 2022</p>
       </footer>
     </div>
   );

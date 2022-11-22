@@ -17,7 +17,7 @@ function App() {
       </header>
       <section>
           {tracks.map((track, i) => {
-            return <Player key={i} track={track} />
+            return <Player key={i} trackNumber={i} track={track} />
           })}
       </section>
       <footer>
@@ -30,7 +30,7 @@ function App() {
 function Player(props) {
   return (
     <div className="player-box">
-      <h2 className="track-title">{nameFix(props.track)}</h2>
+      <h2 className="track-title">{props.trackNumber+1} - {nameFix(props.track)}</h2>
       <audio controls loop src={"/audio/"+props.track+".mp3"} >
         Your browser does not support the audio tag.
       </audio>

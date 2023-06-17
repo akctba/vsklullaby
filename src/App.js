@@ -2,12 +2,11 @@ import logo from './baby-face-icon.svg';
 import './App.css';
 
 const tracks = [
+  "Collection-for-Nursery",
   "Sleep-little-one",
   "Baby-Sleep-Songs",
-  "Collection-for-Nursery",
   "Mozart-Lullabies",
   "rain1",
-  "utero1"
 ]
 
 function App() {

@@ -2,7 +2,12 @@
 let CACHE_NAME = 'vsklullaby';
 let urlsToCache = [
   '/',
-  '/completed'
+  '/completed',
+  '/public/audio/Baby-Sleep-Songs.mp3',
+  '/public/audio/Collection-for-Nursery.mp3',
+  '/public/audio/Mozart-Lullabies.mp3',
+  '/public/audio/rain1.mp3',
+  '/public/audio/Sleep-little-one.mp3',
 ];
 
 // Install a service worker
@@ -34,7 +39,7 @@ self.addEventListener('fetch', event => {
 
 // Update a service worker
 self.addEventListener('activate', event => {
-  let cacheWhitelist = ['your-app-name'];
+  let cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(

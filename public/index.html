@@ -46,6 +46,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 const showInstallButton = () => {
   const installButton = document.createElement('button');
+  installButton.className = 'installButton'
   installButton.textContent = 'Install Lullaby App';
   installButton.addEventListener('click', () => {
     // Show the install prompt

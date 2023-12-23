@@ -59,3 +59,10 @@ audio::-webkit-media-controls-play-button {
   background-color: #3e7e5f;
   border-radius: 50%;
 }
+
+.installButton {
+  border-radius: 4px;
+  background-color: #3e7e5f;
+  color: black;
+  margin-bottom: 1em;
+}

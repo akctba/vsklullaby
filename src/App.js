@@ -1,5 +1,6 @@
 import logo from './baby-face-icon.svg';
 import './App.css';
+import { useState, useRef } from 'react';
 
 const tracks = [
   "Collection-for-Nursery",
@@ -10,6 +11,12 @@ const tracks = [
 ]
 
 function App() {
+  const [currentPlaying, setCurrentPlaying] = useState(null);
+
+  const handlePlay = (playingIndex) => {
+    setCurrentPlaying(playingIndex);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +24,14 @@ function App() {
       </header>
       <section>
           {tracks.map((track, i) => {
-            return <Player key={i} trackNumber={i} track={track} />
+            return <Player 
+              key={i} 
+              trackNumber={i} 
+              track={track}
+              isPlaying={currentPlaying === i}
+              onPlay={() => handlePlay(i)}
+              onPause={() => setCurrentPlaying(null)}
+            />
           })}
       </section>
       <footer>
@@ -29,10 +43,32 @@ function App() {
 }
 
 function Player(props) {
+  const audioRef = useRef(null);
+
+  const handlePlay = () => {
+    props.onPlay();
+  };
+
+  const handlePause = () => {
+    props.onPause();
+  };
+
+  // Stop this player if another one starts playing
+  if (!props.isPlaying && audioRef.current && !audioRef.current.paused) {
+    audioRef.current.pause();
+  }
+
   return (
     <div className="player-box">
       <h2 className="track-title">{props.trackNumber+1} - {nameFix(props.track)}</h2>
-      <audio controls loop src={"/audio/"+props.track+".mp3"} >
+      <audio 
+        ref={audioRef}
+        controls 
+        loop 
+        src={"/audio/"+props.track+".mp3"}
+        onPlay={handlePlay}
+        onPause={handlePause}
+      >
         Your browser does not support the audio tag.
       </audio>
     </div>

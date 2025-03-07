@@ -1,5 +1,6 @@
 import logo from './baby-face-icon.svg';
 import './App.css';
+import { useState, useRef } from 'react';
 
 const tracks = [
   "Collection-for-Nursery",
@@ -10,37 +11,54 @@ const tracks = [
 ]
 
 function App() {
+  const [currentPlaying, setCurrentPlaying] = useState(null);
+  const audioRef = useRef(null);
+
+  const handleTrackClick = (index) => {
+    if (currentPlaying === index) {
+      // If clicking the current track, pause it
+      audioRef.current.pause();
+      setCurrentPlaying(null);
+    } else {
+      // Play new track
+      setCurrentPlaying(index);
+      audioRef.current.src = `/audio/${tracks[index]}.mp3`;
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="wobble" alt="logo" />
       </header>
-      <section>
-          {tracks.map((track, i) => {
-            return <Player key={i} trackNumber={i} track={track} />
-          })}
+      <section className="tracks-list">
+        {tracks.map((track, i) => (
+          <div 
+            key={i}
+            className={`track-item ${currentPlaying === i ? 'playing' : ''}`}
+            onClick={() => handleTrackClick(i)}
+          >
+            <span className="track-number">{i + 1}.</span>
+            <span className="track-name">{nameFix(track)}</span>
+          </div>
+        ))}
+        <audio 
+          ref={audioRef}
+          loop
+          hidden
+        />
       </section>
       <footer>
-          <p>VSK Lullaby for babies. No ads, no login, low light, no throuble. 2022</p>
-          <div id='install-btn'></div>
+        <p>VSK Lullaby for babies. No ads, no login, low light, no throuble. 2022</p>
+        <div id='install-btn'></div>
       </footer>
     </div>
   );
 }
 
-function Player(props) {
-  return (
-    <div className="player-box">
-      <h2 className="track-title">{props.trackNumber+1} - {nameFix(props.track)}</h2>
-      <audio controls loop src={"/audio/"+props.track+".mp3"} >
-        Your browser does not support the audio tag.
-      </audio>
-    </div>
-  )
-}
-
 function nameFix(name) {
-  return name.replaceAll('-', ' ')
+  return name.replaceAll('-', ' ');
 }
 
 export default App;
